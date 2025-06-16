@@ -24,7 +24,13 @@ def extract_images_from_excel(file):
         for img in sheet._images:
             img_ref = img.ref
             with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as tmp_img:
-                img.image.save(tmp_img.name)
+               def extract_images_from_excel(file_path):
+    # ...code to open Excel and locate images...
+    for img in images:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as tmp_img:
+            img.save(tmp_img.name)  # ✅ fixed line
+            image_paths.append(tmp_img.name)
+
                 image_data.append((sheet.title, img_ref, tmp_img.name))
     return image_data
 
